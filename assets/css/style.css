@@ -33,7 +33,7 @@ textarea {
 .row {
   white-space: pre-wrap;
   height: 80px;
-  border-top: 1px solid white;;
+  border-top: 1px solid white;
 }
 
 .hour {
@@ -44,7 +44,7 @@ textarea {
 
 .past {
   background-color: #d3d3d3;
-  color: white;
+  color: black;
 }
 
 .present {
@@ -73,4 +73,9 @@ textarea {
 .saveBtn:hover i {
   font-size: 35px;
   transition: all .35s ease-in-out;
+}
+
+.saveBtn:active {
+  background-color: #0666FF;
+  transition: all .15 linear;
 }
