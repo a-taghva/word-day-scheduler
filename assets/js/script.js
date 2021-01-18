@@ -5,9 +5,8 @@ let savedTasks = [];
 
 function checkStatus(arr, hour) {
     for (let i = 0; i < arr.length; i++) {
-        let time
-        time = +arr[i].getAttribute("data-time");
-    
+        let time = +arr[i].getAttribute("data-time");
+        
         if (time < hour) {
             arr[i].classList.add("past");
         } else if (time === hour) {
