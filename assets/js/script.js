@@ -1,7 +1,6 @@
 let textareaEl = document.querySelectorAll("textarea")
 let now = moment().format("dddd, MMMM Do")
 let currentHour = +moment().format('HH');
-let mainArr = [];
 let savedTasks = [];
 
 function checkStatus(arr, hour) {
@@ -31,10 +30,10 @@ $(".row").on("click", ".saveBtn", () => {
     let text = textarea.value.trim();
     let time = $(textarea).attr("data-time");
 
-    for (let i = 0; i < mainArr.length; i++) {
-        if (mainArr[i][time]) {
-            mainArr[i][time] = text;
-            if (!mainArr[i][time]) mainArr.splice(i, 1);
+    for (let i = 0; i < savedTasks.length; i++) {
+        if (savedTasks[i][time]) {
+            savedTasks[i][time] = text;
+            if (!savedTasks[i][time]) savedTasks.splice(i, 1);
             existed = true;
             break;
         };
@@ -44,10 +43,10 @@ $(".row").on("click", ".saveBtn", () => {
         let tempObj = {};
         if (!text) return false;
         tempObj[time] = text;
-        mainArr.push(tempObj);
+        savedTasks.push(tempObj);
     };
 
-    saveTask(mainArr);
+    saveTask(savedTasks);
 
 });
 
@@ -57,18 +56,18 @@ function saveTask(arr) {
 };
 
 function loadTasks() {
-    mainArr = localStorage.getItem("tasks");
-    mainArr = JSON.parse(mainArr);
+    savedTasks = localStorage.getItem("tasks");
+    savedTasks = JSON.parse(savedTasks);
 
-    if (!mainArr) {
-        return mainArr = [];
+    if (!savedTasks) {
+        return savedTasks = [];
     };
 
     for (let i = 0; i < textareaEl.length; i++) {
         let time = textareaEl[i].getAttribute("data-time");
-        for (let j = 0; j < mainArr.length; j++) {
-            if (mainArr[j][time]) {
-                textareaEl[i].value = mainArr[j][time];
+        for (let j = 0; j < savedTasks.length; j++) {
+            if (savedTasks[j][time]) {
+                textareaEl[i].value = savedTasks[j][time];
                 break;
             };
         };
